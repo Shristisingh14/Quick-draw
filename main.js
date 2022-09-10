@@ -4,10 +4,43 @@ random_no = Math.floor((Math.random()*quick_draw_data_set.length)+1);
 Element_of_array = quick_draw_data_set[random_no];
 console.log("Sketch to be drawn = "+ Element_of_array);
 
-document.getElementById("given_sketch").innerHTML="Sketch to be drawn - "+ Element_of_array;
+document.getElementById("sketch").innerHTML="Sketch to be drawn - "+ Element_of_array;
 
 timer_counter = 0;
 timer_check = "";
 drawn_sketch = "";
 answer_holder = "";
-score = "";
+score = 0;
+
+function setup() {
+    canvas = createCanvas(300, 300);
+    canvas.center();
+    background("white");
+}
+
+function updateCanvas() {
+    background("white");
+}
+
+function draw() {
+    check_sketch()
+    if(drawn_sketch==sketch) {
+        answer_holder = set;
+        score++;
+        document.getElementById("score").innerHTML="Score: " + score;
+    }
+}
+
+function check_sketch() {
+  timer_counter++ ;
+  document.getElementById("time").innerHTML= "Time: " + timer_counter;
+  if(timer_counter >= 1000) {
+     timer_counter = 0;
+     timer_check = Completed;
+  }
+  if(timer_check=='Completed' || answer_holder=='set') {
+    timer_check = "";
+    answer_holder = "";
+    updateCanvas();
+  }
+}
