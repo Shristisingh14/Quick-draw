@@ -14,7 +14,7 @@ score = 0;
 
 function setup() {
     canvas = createCanvas(300, 300);
-    canvas.center();
+    canvas.position(610,250);
     background("white");
     canvas.mouseReleased(classifyCanvas);
     synth = window.speechSynthesis;
